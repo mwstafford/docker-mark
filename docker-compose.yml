@@ -1,0 +1,21 @@
+football:
+    build: ./football
+    ports:
+        - "5000:5000"
+workout:
+    build: ./workout
+    ports:
+        - "5001:5000"
+nginx:
+    build: ./nginx
+    ports:
+        - "80:80"
+    volumes:
+        - ./content:/usr/share/nginx/html
+    links:
+        - php
+php:
+    image: php:7-fpm
+    volumes:
+        - ./content:/usr/share/nginx/html
+
